@@ -1,0 +1,64 @@
+import React from "react";
+
+const Signin = () => {
+  return (
+    <div>
+      {/* <h1>this is Sign In</h1> */}
+      <div className="mb-5 pb-5  ">
+        <div className="text-center">
+          <h1 className="display-4">Sign In</h1>
+          <hr className="w-25 mx-auto " />
+        </div>
+        <div className="container mt-5">
+          <div className="row">
+            <div className="col-md-6 col-10 col-lg-7  mx-auto">
+              <form>
+                <div className="mb-3 form-group">
+                  <label htmlFor="Email" className="form-label">
+                    Email :
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="Email"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter Your Email"
+                  />
+                  <div id="emailHelp" className="form-text">
+                    We'll never share your email with anyone else.
+                  </div>
+                </div>
+                <div className="mb-3 form-group">
+                  <label htmlFor="InputPassword1" className="form-label">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="InputPassword1"
+                  />
+                </div>
+
+                <div className="mb-3 form-check">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id="exampleCheck1"
+                  />
+                  <label className="form-check-label" htmlFor="exampleCheck1">
+                    Remember me.
+                  </label>
+                </div>
+                <button type="submit" className="btn btn-primary">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Signin;
