@@ -1,6 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Signin = () => {
+  const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const signinUser = async (e) => {
+    e.preventDefault();
+    const response = await fetch("./signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+    const data = await response.json();
+    if (response.status === 400 || !data) {
+      window.alert("Invalid Details");
+      console.log("Invalid Details");
+    } else {
+      window.alert(" Signin Successful");
+      console.log("Signin Successful");
+      history.push("/");
+    }
+  };
+
   return (
     <div>
       {/* <h1>this is Sign In</h1> */}
@@ -22,6 +50,10 @@ const Signin = () => {
                     className="form-control"
                     id="Email"
                     aria-describedby="emailHelp"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
                     placeholder="Enter Your Email"
                   />
                   <div id="emailHelp" className="form-text">
@@ -36,6 +68,10 @@ const Signin = () => {
                     type="password"
                     className="form-control"
                     id="InputPassword1"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
                   />
                 </div>
 
@@ -49,9 +85,16 @@ const Signin = () => {
                     Remember me.
                   </label>
                 </div>
-                <button type="submit" className="btn btn-primary">
-                  Submit
-                </button>
+                <div className="form-group form-button">
+                  <input
+                    type="submit"
+                    name="signin"
+                    id="signin"
+                    className="form-submit"
+                    value="sign in"
+                    onClick={signinUser}
+                  />
+                </div>
               </form>
             </div>
           </div>
